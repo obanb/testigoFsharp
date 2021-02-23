@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\obanb\.nuget\packages\</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.8.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="$([MSBuild]::EnsureTrailingSlash($(NuGetPackageFolders)))" />
+  </ItemGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">C:\Users\obanb\.nuget\packages\fsharp.core\5.0.0</PkgFSharp_Core>
+    <PkgSuave Condition=" '$(PkgSuave)' == '' ">C:\Users\obanb\.nuget\packages\suave\2.6.0</PkgSuave>
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\obanb\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
+    <PkgMongoDB_Driver Condition=" '$(PkgMongoDB_Driver)' == '' ">C:\Users\obanb\.nuget\packages\mongodb.driver\2.11.6</PkgMongoDB_Driver>
+    <PkgFSharpPlus Condition=" '$(PkgFSharpPlus)' == '' ">C:\Users\obanb\.nuget\packages\fsharpplus\1.2.0-ci01803</PkgFSharpPlus>
+    <PkgFSharpPlus_AspNetCore_Suave Condition=" '$(PkgFSharpPlus_AspNetCore_Suave)' == '' ">C:\Users\obanb\.nuget\packages\fsharpplus.aspnetcore.suave\0.0.6</PkgFSharpPlus_AspNetCore_Suave>
+    <PkgFantomas Condition=" '$(PkgFantomas)' == '' ">C:\Users\obanb\.nuget\packages\fantomas\4.4.0-beta-007</PkgFantomas>
+  </PropertyGroup>
+</Project>
