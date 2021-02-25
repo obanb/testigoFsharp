@@ -33,6 +33,26 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Expecto": {
+              "target": "Package",
+              "version": "[9.0.2, )",
+              "generatePathProperty": true
+            },
+            "Expecto.BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[9.0.2, )",
+              "generatePathProperty": true
+            },
+            "Expecto.FsCheck": {
+              "target": "Package",
+              "version": "[9.0.2, )",
+              "generatePathProperty": true
+            },
+            "Expecto.Hopac": {
+              "target": "Package",
+              "version": "[9.0.2, )",
+              "generatePathProperty": true
+            },
             "FSharp.Core": {
               "target": "Package",
               "version": "[5.0.0, )",

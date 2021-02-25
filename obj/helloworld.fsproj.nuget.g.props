@@ -20,8 +20,13 @@
     <PkgSuave Condition=" '$(PkgSuave)' == '' ">C:\Users\obanb\.nuget\packages\suave\2.6.0</PkgSuave>
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\obanb\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
     <PkgMongoDB_Driver Condition=" '$(PkgMongoDB_Driver)' == '' ">C:\Users\obanb\.nuget\packages\mongodb.driver\2.11.6</PkgMongoDB_Driver>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\obanb\.nuget\packages\microsoft.codeanalysis.analyzers\2.6.1</PkgMicrosoft_CodeAnalysis_Analyzers>
     <PkgFSharpPlus Condition=" '$(PkgFSharpPlus)' == '' ">C:\Users\obanb\.nuget\packages\fsharpplus\1.2.0-ci01803</PkgFSharpPlus>
     <PkgFSharpPlus_AspNetCore_Suave Condition=" '$(PkgFSharpPlus_AspNetCore_Suave)' == '' ">C:\Users\obanb\.nuget\packages\fsharpplus.aspnetcore.suave\0.0.6</PkgFSharpPlus_AspNetCore_Suave>
     <PkgFantomas Condition=" '$(PkgFantomas)' == '' ">C:\Users\obanb\.nuget\packages\fantomas\4.4.0-beta-007</PkgFantomas>
+    <PkgExpecto Condition=" '$(PkgExpecto)' == '' ">C:\Users\obanb\.nuget\packages\expecto\9.0.2</PkgExpecto>
+    <PkgExpecto_Hopac Condition=" '$(PkgExpecto_Hopac)' == '' ">C:\Users\obanb\.nuget\packages\expecto.hopac\9.0.2</PkgExpecto_Hopac>
+    <PkgExpecto_FsCheck Condition=" '$(PkgExpecto_FsCheck)' == '' ">C:\Users\obanb\.nuget\packages\expecto.fscheck\9.0.2</PkgExpecto_FsCheck>
+    <PkgExpecto_BenchmarkDotNet Condition=" '$(PkgExpecto_BenchmarkDotNet)' == '' ">C:\Users\obanb\.nuget\packages\expecto.benchmarkdotnet\9.0.2</PkgExpecto_BenchmarkDotNet>
   </PropertyGroup>
 </Project>

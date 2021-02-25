@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Expecto" Version="9.0.2" />
+    <PackageReference Include="Expecto.BenchmarkDotNet" Version="9.0.2" />
+    <PackageReference Include="Expecto.FsCheck" Version="9.0.2" />
+    <PackageReference Include="Expecto.Hopac" Version="9.0.2" />
     <PackageReference Include="Fantomas" Version="4.4.0-beta-007" />
     <PackageReference Include="FSharpPlus" Version="1.2.0-CI01803" />
     <PackageReference Include="FSharpPlus.AspNetCore.Suave" Version="0.0.6" />
