@@ -39,6 +39,9 @@ let app (dbClient: IMongoDatabase) =
            pathScan "/issue/%s" (fun id -> getIssue id dbClient)
            path "/hello" >=> OK "Hello GET" 
         ]
+        GET >=> choose [
+           path "/issues/create" >=> getIssueList dbClient
+        ]
         path "/" >=> (Successful.OK "This will return the base page.")
     ]
     

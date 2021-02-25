@@ -1,6 +1,7 @@
 ﻿namespace helloworld.Effects
 
 open FSharpPlus.Control
+open MongoDB.Bson
 
 module database =
    open MongoDB.Driver
@@ -22,5 +23,18 @@ module database =
                 | _ -> Some find.Head 
        res
        
+   type CreateIssueInput = { name: string; content: string; desc: string }
+   
+    let prepareIssueDocument createIssueInput =
+      let doc = { Id = ObjectId.GenerateNewId().ToString() ; name = createIssueInput.name; content = createIssueInput.content; desc = createIssueInput.desc }
+        
+      doc
 
+   let createIssue (dbClient: IMongoDatabase) (input:CreateIssueInput) =
+       let col = dbClient.GetCollection<Issue> "issues"
+       let doc = input |> prepareIssueDocument
+       let create = col.InsertOne(doc) 
+    
+       create
        
+ 
