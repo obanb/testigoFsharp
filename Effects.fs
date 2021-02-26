@@ -19,8 +19,8 @@ module database =
        let filter = Builders.Filter.Eq((fun issue -> issue.Id), id)
        let find = col.Find(filter).ToEnumerable() |> List.ofSeq
        let res = match find with
-                | [] -> None
-                | _ -> Some find.Head 
+                 | [] -> None
+                 | _ -> Some find.Head 
        res
        
    type CreateIssueInput = { name: string; content: string; desc: string }
@@ -35,6 +35,6 @@ module database =
        let doc = input |> prepareIssueDocument
        let create = col.InsertOne(doc) 
     
-       create
+       input
        
  

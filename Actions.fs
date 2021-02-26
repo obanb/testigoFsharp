@@ -30,11 +30,18 @@ module actions =
             
         Successful.OK res httpContext    
 
+    let userRequestToUser (issue: CreateIssueInput): Issue = 
+        {
+            name = issue.name;
+            content = issue.content;
+            desc = issue.desc
+            Id = ""
+         }
     let createIssue dbClient  =
         request (fun req ->
             Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(req.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
             |> createIssue dbClient
+            |> userRequestToUser
             |> JsonConvert.SerializeObject
             |> Successful.OK
         )
-     
