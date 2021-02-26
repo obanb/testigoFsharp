@@ -12,6 +12,8 @@ open MongoDB.Driver
 open helloworld.Effects.database
 
 open helloworld.Effects.actions
+open helloworld.tests.config
+open helloworld.tests.common
 
 let setCORSHeaders =
     addHeader  "Access-Control-Allow-Origin" "*"
@@ -39,8 +41,8 @@ let app (dbClient: IMongoDatabase) =
            pathScan "/issue/%s" (fun id -> getIssue id dbClient)
            path "/hello" >=> OK "Hello GET" 
         ]
-        GET >=> choose [
-           path "/issues/create" >=> getIssueList dbClient
+        POST >=> choose [
+           path "/issues/create" >=> createIssue dbClient
         ]
         path "/" >=> (Successful.OK "This will return the base page.")
     ]
@@ -48,5 +50,8 @@ let app (dbClient: IMongoDatabase) =
 
 [<EntryPoint>]
 let main argv =
+  runExpecto argv simpleTest
+  
   startWebServer serverConfig (helloworld.Effects.database.getInternalMongoClient() |> app)
+  
   0

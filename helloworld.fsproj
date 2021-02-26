@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Include="Issue.fs" />
     <Compile Include="IssueMongo.fs" />
+    <Compile Include="tests\common.fs" />
+    <Compile Include="tests\config.fs" />
     <Compile Include="Effects.fs" />
     <Compile Include="Actions.fs" />
     <Compile Include="Program.fs" />

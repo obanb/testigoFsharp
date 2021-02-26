@@ -25,7 +25,7 @@ module database =
        
    type CreateIssueInput = { name: string; content: string; desc: string }
    
-    let prepareIssueDocument createIssueInput =
+   let prepareIssueDocument createIssueInput =
       let doc = { Id = ObjectId.GenerateNewId().ToString() ; name = createIssueInput.name; content = createIssueInput.content; desc = createIssueInput.desc }
         
       doc

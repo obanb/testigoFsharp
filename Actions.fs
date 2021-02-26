@@ -29,3 +29,12 @@ module actions =
                   | None -> "Issue not fond"
             
         Successful.OK res httpContext    
+
+    let createIssue dbClient  =
+        request (fun req ->
+            Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(req.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
+            |> createIssue dbClient
+            |> JsonConvert.SerializeObject
+            |> Successful.OK
+        )
+     
