@@ -33,7 +33,7 @@ module database =
    let createIssue (dbClient: IMongoDatabase) (input:CreateIssueInput) =
        let col = dbClient.GetCollection<Issue> "issues"
        let doc = input |> prepareIssueDocument
-       let create = col.InsertOne(doc) 
+       col.InsertOne doc
     
        input
        
