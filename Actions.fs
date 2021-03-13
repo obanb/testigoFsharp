@@ -37,6 +37,7 @@ module actions =
             desc = issue.desc
             Id = ""
          }
+           
     let createIssue dbClient  =
         request (fun req ->
             Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(req.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
@@ -45,3 +46,18 @@ module actions =
             |> JsonConvert.SerializeObject
             |> Successful.OK
         )
+        
+    let createIssue2 dbClient httpContext =
+        async {
+             let! result = Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(httpContext.request.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
+                          |> createIssue2 dbClient
+                          
+             return match result with
+                  | Error _ -> Successful.NO_CONTENT httpContext
+                  | Ok issue -> issue
+                                |> userRequestToUser
+                                |> JsonConvert.SerializeObject
+                                |> (fun x -> Successful.OK x httpContext)    
+        }
+        
+   

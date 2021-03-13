@@ -43,6 +43,11 @@ let app (dbClient: IMongoDatabase) =
         ]
         POST >=> choose [
            path "/issues/create" >=> createIssue dbClient
+           path "/issues/create2" >=>
+                fun ctx -> async{
+                      let! res = createIssue2 dbClient ctx 
+                      return! res
+                }  
         ]
         path "/" >=> (Successful.OK "This will return the base page.")
     ]

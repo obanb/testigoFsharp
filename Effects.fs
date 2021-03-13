@@ -1,6 +1,7 @@
 ﻿namespace helloworld.Effects
 
 open FSharpPlus.Control
+open Hopac.Scheduler
 open MongoDB.Bson
 
 module database =
@@ -37,4 +38,16 @@ module database =
     
        input
        
- 
+   let createIssue2 (dbClient: IMongoDatabase) (input: CreateIssueInput): Async<Result<CreateIssueInput, string>> =
+       async {
+         try
+           let col = dbClient.GetCollection<Issue> "issues"
+           let result = input
+                        |> prepareIssueDocument
+                        |> col.InsertOne
+                         
+           return Ok input
+         with
+           | e -> return Error (e.ToString())
+    }
+     

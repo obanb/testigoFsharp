@@ -12,6 +12,7 @@
     <Compile Include="tests\config.fs" />
     <Compile Include="Effects.fs" />
     <Compile Include="Actions.fs" />
+    <Compile Include="Errors.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
