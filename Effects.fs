@@ -1,8 +1,7 @@
 ﻿namespace helloworld.Effects
 
-open FSharpPlus.Control
-open Hopac.Scheduler
 open MongoDB.Bson
+open MongoDB.Driver
 
 module database =
    open MongoDB.Driver
@@ -14,7 +13,7 @@ module database =
    let getIssues (dbClient : IMongoDatabase) =
        let col = dbClient.GetCollection<Issue> "issues"
        col.Find(Builders.Filter.Empty).ToEnumerable() |> List.ofSeq
-       
+              
    let getIssueById (dbClient: IMongoDatabase) (id:string) =
        let col = dbClient.GetCollection<Issue> "issues"
        let filter = Builders.Filter.Eq((fun issue -> issue.Id), id)
@@ -38,7 +37,7 @@ module database =
     
        input
        
-   let createIssue2 (dbClient: IMongoDatabase) (input: CreateIssueInput): Async<Result<CreateIssueInput, string>> =
+   let createIssue2 (dbClient: IMongoDatabase) (input: CreateIssueInput): Async<Result<CreateIssueInput,string>> =
        async {
          try
            let col = dbClient.GetCollection<Issue> "issues"

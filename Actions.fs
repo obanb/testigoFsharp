@@ -1,5 +1,6 @@
 ﻿namespace helloworld.Effects
 
+open System.ComponentModel.DataAnnotations
 open FSharpPlus.Control
 open helloworld
 
@@ -11,6 +12,7 @@ module actions =
     open MongoDB.Driver
     open Issue
     open Newtonsoft.Json
+    open System
 
     let getIssueList dbClient httpContext =
         let issues = getIssues dbClient
@@ -47,13 +49,35 @@ module actions =
             |> Successful.OK
         )
         
+    let deserializeRequest request =
+        Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(request.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
+    let validateRequired prop propName =
+        match prop with
+              | "" -> Error ("Property " + propName + " is required.")
+              | _ -> Ok prop
+    
+    let partial f x y = f(x, y)
+    let f = ["a";"b"] |> partial String.Join "fe"
+    
+    let validateCreateIssueInput (input: CreateIssueInput) =
+         let validationResults = [validateRequired input.name "name"; validateRequired input.desc "desc"] |> List.choose (fun res ->
+             match res with
+                   | Error msg -> Some msg
+                   | Ok _ -> None)
+                                |> (fun filtered -> match filtered with
+                                        | [] -> Ok input
+                                        | _ ->  (Environment.NewLine, filtered) |> String.Join |> Error)
+         
+         validationResults
+ 
     let createIssue2 dbClient httpContext =
         async {
-             let! result = Newtonsoft.Json.JsonConvert.DeserializeObject<CreateIssueInput>(httpContext.request.rawForm |> System.Text.ASCIIEncoding.UTF8.GetString)
-                          |> createIssue2 dbClient
+             let result = deserializeRequest httpContext.request
+                          |> validateCreateIssueInput
+                          |> Result.bind (fun res -> createIssue2 dbClient res |> Async.RunSynchronously)
                           
              return match result with
-                  | Error _ -> Successful.NO_CONTENT httpContext
+                  | Error e -> Successful.OK e httpContext
                   | Ok issue -> issue
                                 |> userRequestToUser
                                 |> JsonConvert.SerializeObject
